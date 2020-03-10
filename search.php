@@ -36,8 +36,7 @@
 				foreach($data->results as $myMovie):
 					$movieId = $myMovie->id;
 					$movieUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/movie/' . $movieId . $apiKey));
-					$videoUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/movie/' . $movieId . $videoParam . $apiKey));
-					$videoParam = "/videos";
+					$videoUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/movie/' . $movieId . '/videos' . $apiKey));
 					$movie = wp_remote_retrieve_body($movieUrl);
 					$video = wp_remote_retrieve_body($videoUrl);
 					$movieData = json_decode($movie);
@@ -48,6 +47,8 @@
 					foreach(array_slice($movieData->genres, 0, 3) as $genre):
 						array_push($genres, $genre->name);
 					endforeach;
+
+					$youtubeUrl = "https://www.youtube.com/watch?v=" . $videoData->results[0]->key;
 					?>
 					<div class="col-md-4 col-sm-6 col-xs-12 xs-mb50">
 						<div class="movie-box-3 mb30">

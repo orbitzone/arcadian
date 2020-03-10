@@ -332,9 +332,6 @@ jQuery.noConflict();
                 saveId(t.attr('href'));
                 t.addClass('watched');
                 t.find('i').removeClass('fa-play').addClass('fa-eye');
-              },
-              close: function() {
-                alert('close');
               }
             }
         });

@@ -5,23 +5,13 @@
 
 $apiKey = "?api_key=1e448e0dfcdbb565f5d329820065b4d2";
 
-if (!$params['page']) {
-  $listUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/discover/movie' . $apiKey));
-  $list = wp_remote_retrieve_body($listUrl);
-}else{
-  $page = "&page=" . $params['page'];
-  $listUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/discover/movie' . $apiKey . $page));
-  $list = wp_remote_retrieve_body($listUrl);
-}
-$data = json_decode($list);
-
 $movieId = $params['movie'];
 
 $movieUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/movie/' . $movieId . $apiKey));
-$videoUrl = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/movie/' . $movieId . $videoParam . $apiKey));
-$videoParam = "/videos";
+$videoUrls = wp_remote_get(esc_url_raw('https://api.themoviedb.org/3/movie/' . $movieId . '/videos' . $apiKey));
+
 $movie = wp_remote_retrieve_body($movieUrl);
-$video = wp_remote_retrieve_body($videoUrl);
+$video = wp_remote_retrieve_body($videoUrls);
 $movieData = json_decode($movie);
 $videoData = json_decode($video);
 $imdb = "https://www.imdb.com/title/" . $movieData->imdb_id;
@@ -32,6 +22,8 @@ foreach(array_slice($movieData->genres, 0, 3) as $genre):
 endforeach;
 
 $youtubeUrl = "https://www.youtube.com/watch?v=" . $videoData->results[0]->key;
+
+print_r($video);
 
 ?>
 <?php if ($movieData->backdrop_path): ?>
