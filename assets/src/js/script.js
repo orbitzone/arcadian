@@ -1,30 +1,29 @@
-
-
-/**********************
-
-Custom.js
-=============
-
-Author:  KlbTheme
-Template: Movify - Movies, Series & Cinema WordPress Theme
-Version: 1.0
-
-Author URI: klbtheme.com
-***************************/
-
 jQuery.noConflict();
-(function ($) {
+(function($){
     "use strict";
-    function setVisted() {
-      var idArray = $.cookie('idCookie').split(',');
-      for (var x=0; x<idArray.length; x++) {
-        jQuery('#' + idArray[x]).css('background', '#ff0000');
-      }
+
+    var idArray = Cookies.get('idCookie');
+
+    function saveId(href) {
+        if (Cookies.get('idCookie')) {
+            Cookies.set('idCookie', Cookies.get('idCookie') + "," + href);
+        } else {
+            Cookies.set('idCookie', href);
+        }
     }
-    jQuery('.play-video').click(function(){
-      saveId(jQuery(this).attr('id'));
-      setVisited();
-    });
+
+    if (null != Cookies.get('idCookie')) {
+        var idArray = Cookies.get('idCookie').split(',');
+        for (var x = 0; x < idArray.length; x++) {
+            var link = $("a[href='" + idArray[x] + "']").get();
+            if (link.length) {
+                $(link).addClass('watched');
+                $(link).find('i').removeClass('fa-play').addClass('fa-eye');
+            }
+        }
+    }
+
+  $('.listing-content').matchHeight();
 
 
 
@@ -325,8 +324,19 @@ jQuery.noConflict();
             mainClass: 'mfp-fade',
             removalDelay: 160,
             preloader: false,
-
-            fixedContentPos: false
+            fixedContentPos: false,
+            callbacks: {
+              open: function() {
+                var mp = $.magnificPopup.instance,
+                t = $(mp.currItem.el[0]);
+                saveId(t.attr('href'));
+                t.addClass('watched');
+                t.find('i').removeClass('fa-play').addClass('fa-eye');
+              },
+              close: function() {
+                alert('close');
+              }
+            }
         });
 
 

@@ -13,22 +13,9 @@
 
 		<?php wp_head(); ?>
 		<style media="screen">
-			a.play-video:visited,
-			a.play-video:focus{
+			.play-video.watched{
 				background: red !important;
 				content: 'watched' !important;
-			}
-			a.play-video:before:visited,
-			a.play-video:before:focus{
-				background: red !important;
-				content: 'watched' !important;
-				text-indent: -999999px;
-			}
-			a.play-video:after:visited,
-			a.play-video:after:focus{
-				background: red !important;
-				content: 'watched' !important;
-				text-indent: -999999px;
 			}
 		</style>
 	</head>
@@ -41,9 +28,9 @@
 				<div class="container-fluid">
 
 					<nav class="navbar navbar-expand-lg">
-						<a class="navbar-brand" href="#" title="Movify – Movies &amp; Cinema WordPress Theme">
-							<img src="https://klbtheme.com/movify/wp-content/uploads/2018/04/logo.png" alt="Movify – Movies &amp; Cinema WordPress Theme" class="logo" style="width: 150px;">
-							<img src="https://klbtheme.com/movify/wp-content/uploads/2018/04/logo-white.png" alt="Movify – Movies &amp; Cinema WordPress Theme" class="logo-white">
+						<a class="navbar-brand" href="/" title="Movify – Movies &amp; Cinema WordPress Theme">
+							<img src="<?php bloginfo('template_url'); ?>/assets/dist/img/logo.png" alt="Movify – Movies &amp; Cinema WordPress Theme" class="logo" style="width: 150px;">
+							<img src="<?php bloginfo('template_url'); ?>/assets/dist/img/logo-white.png" alt="Movify – Movies &amp; Cinema WordPress Theme" class="logo-white">
 						</a>
 
 						<button id="mobile-nav-toggler" class="hamburger hamburger--collapse" type="button">

@@ -21,7 +21,7 @@
 
 				<!-- Start of Widget 1 -->
 				<div class="col-lg-3 col-md-6 col-sm-12">
-					<div class="widget widget-blog widget_text">			<div class="textwidget"><p><img class="alignnone wp-image-93" src="https://klbtheme.com/movify/wp-content/uploads/2018/04/logo-white.png" alt="" width="110" height="28"></p>
+					<div class="widget widget-blog widget_text">			<div class="textwidget"><p><img class="alignnone wp-image-93" src="<?php bloginfo('template_url'); ?>/assets/dist/img/logo-white.png" alt="" width="110" height="28"></p>
 						<p class="nomargin">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, ducimus, atque. Praesentium suscipit provident explicabo dignissimos nostrum numquam deserunt earum accusantium et fugit.</p>
 					</div>
 				</div>                        </div>

@@ -22,13 +22,14 @@ export const compressImages = () => {
     .pipe(dest('assets/dist/img'))
 }
 export const minJs = () => {
-    return src('assets/src/js/**/*')
+    return src('assets/src/js/*')
     .pipe(minifyJs({noSource: true}))
     .pipe(dest('assets/dist/js'));
 }
-export const hello = (cb) => {
-  console.log(PRODUCTION);
-  cb();
+export const minJsVendor = () => {
+    return src('assets/src/js/vendor/*')
+    .pipe(minifyJs({noSource: true}))
+    .pipe(dest('assets/dist/js/vendor'));
 }
 export const promise = (cb) => {
   return new Promise((resolve, reject) => {
@@ -38,4 +39,4 @@ export const promise = (cb) => {
   });
 };
 
-export default series(arcadianStyle, compressImages, minJs)
+export default series(arcadianStyle, compressImages, minJs, minJsVendor)
