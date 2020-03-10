@@ -23,8 +23,6 @@ endforeach;
 
 $youtubeUrl = "https://www.youtube.com/watch?v=" . $videoData->results[0]->key;
 
-print_r($video);
-
 ?>
 <?php if ($movieData->backdrop_path): ?>
   <div style="position: relative; overflow: hidden; background: url(https://image.tmdb.org/t/p/w1280<?php echo $movieData->poster_path; ?>); background-size: cover !important; background-repeat: no-repeat; background-position: 50% 10%;">
